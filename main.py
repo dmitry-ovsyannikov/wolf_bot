@@ -11,7 +11,7 @@ logger = logging.getLogger(__name__)
 
 # Токен бота и ID группы
 TOKEN = "8086402680:AAHXsLs0eZNuNOS8P4Hx9DpY_kOd_IZ26yc"
-GROUP_CHAT_ID = "-1002338597070"
+GROUP_CHAT_ID = -1002338597070
 
 # Инициализация бота, диспетчера и планировщика задач
 bot = Bot(token=TOKEN)
@@ -79,6 +79,7 @@ async def main():
 # Запуск бота
 if __name__ == "__main__":
     asyncio.run(main())
+
 
 
 

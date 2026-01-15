@@ -57,8 +57,13 @@ async def send_friday_mac():
         logger.error(f"Ошибка при отправке сообщения в группу: {e}")
 
 # Планировщик задач
+scheduler.add_job(send_tuesday_task, "interval", minutes=1)
+scheduler.add_job(send_thursday_task, "interval", minutes=1)
 scheduler.add_job(send_tuesday_task, "cron", day_of_week="tue", hour=11, minute=0)
 scheduler.add_job(send_friday_mac, "cron", day_of_week="fri", hour=10, minute=0)
+
+# Проверка работы - Чтобы убедиться, что всё работает корректно, можешь временно заменить cron-расписание на более короткий интервал: scheduler.add_job(send_tuesday_task, "interval", minutes=1) scheduler.add_job(send_thursday_task, "interval", minutes=1)
+# Проверь, отправляется ли сообщение. Если всё работает — верни обратно cron: scheduler.add_job(send_tuesday_task, "cron", day_of_week="tue", hour=11, minute=0)
 
 # Обработчик ошибок планировщика
 def job_error_listener(event):
@@ -75,3 +80,4 @@ async def main():
 # Запуск бота
 if __name__ == "__main__":
     asyncio.run(main())
+
